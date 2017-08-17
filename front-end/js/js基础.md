@@ -55,7 +55,7 @@ console.log(NaN == NaN);
 
 var str = '123abc';
 console.log(typeof str++); // number，因为str++ 为 NaN;
-console.log(str);
+console.log(str); // NaN
 ```
 
 ## 例举至少 3 种强制类型转换和 2 种隐式类型转换
@@ -277,9 +277,8 @@ function fun(n,o) {
 var a = fun(0);  a.fun(1);  a.fun(2);  a.fun(3);//undefined,?,?,?
 var b = fun(0).fun(1).fun(2).fun(3);//undefined,?,?,?
 var c = fun(0).fun(1);  c.fun(2);  c.fun(3);//undefined,?,?,?
-```
-结果如下：
-```js
+
+// 结果如下：
 function fun(n,o) {
   console.log(o);
   return {
@@ -293,3 +292,121 @@ var b = fun(0).fun(1).fun(2).fun(3);//undefined,0,1,2
 var c = fun(0).fun(1);  c.fun(2);  c.fun(3);//undefined,0,1,1
 ```
 分析参考[这里](http://www.cnblogs.com/xxcanghai/p/4991870.html)
+
+
+```js
+function Foo() {
+  getName = function() {
+    console.log(1);
+  };
+  return this;
+}
+Foo.getName = function() {
+  console.log(2);
+};
+Foo.prototype.getName = function() {
+  console.log(3);
+};
+var getName = function () {
+  console.log(console.log(4));
+};
+function getName() {
+  console.log(5);
+}
+// 写出以下的输出结果
+Foo.getName();
+getName();
+Foo().getName();
+getName();
+new Foo.getName();
+(new Foo()).getName();
+
+
+// 答案：
+Foo.getName(); // 2
+getName(); // 4
+Foo().getName(); // 1
+getName(); // 1
+new Foo.getName(); // 2
+(new Foo()).getName(); // 3
+```
+分析参考[这里](http://www.cnblogs.com/xxcanghai/p/5189353.html)
+
+```js
+(function () {
+  console.log(typeof arguments); // object，arguments是对象，伪数组，可用Array,prototype.slice.call(arguments)转换成数组
+})();
+
+var f = function g() {
+  console.log(23);
+}
+typeof g(); 
+// 会发生错误，function g() {console.log(23);} 是函数表达式，事实上只有一个名字，
+// 不是一个函数声明，函数实际上是绑定到变量f,不是g
+
+(function(x) {
+  delete x;
+  return x;
+})(1); // 1，参数不可删除
+
+(function f(f){
+  console.log(typeof f()); // number
+})(function(){ return 1; });
+
+var foo = {  
+  bar: function() { return this.baz; },  
+  baz: 1
+};
+ 
+(function(){  
+  console.log(typeof arguments[0]()); // foo.bar中的this指向为window
+})(foo.bar);
+
+var foo = {
+  bar: function(){ return this.baz; },
+  baz: 1
+}
+typeof (f = foo.bar)(); // undefined
+```
+
+```js
+var y = 1, x = y = typeof x;
+console.log(x);
+
+// 重写上面就是：
+var y;
+var x;
+y = 1;
+y = typeof x;
+x = y;
+console.log(x);
+```
+
+```js
+var f = (function f(){ return "1"; }, function g(){ return 2; })();
+typeof f;
+
+// 答案 number
+// 逗号操作符行为：
+var x = (1, 2, 3); // x = 3
+// 当你有一系列的组合在一起，并由逗号分隔的表达式，它们从左到右进行计算，但只有最后一个表达式的结果保存，因此上述可改写为：
+var f = (function g(){return 2;})();
+typeof f;
+```
+
+```js
+var x = 1;
+if (function f(){}) {
+  x += typeof f;
+}
+console.log(x);
+
+// 难点 if 中的 function f(){} 要如何处理？
+// 函数声明只能裸露于全局作用域下或位于函数体中。
+// 从语法上讲，不能出现在块中，例如不能出现在 if,while,for语句中，因为块只能包含语句。
+// 因此 if()中的f函数不能当做函数声明，而应当成表达式使用
+// 可能在预编译阶段做了如下处理
+// if(xxx = function() {})
+// 因此我们是找不到 f 的
+// 答案：1undefined;
+```
