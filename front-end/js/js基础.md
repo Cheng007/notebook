@@ -59,7 +59,7 @@ console.log(str); // NaN
 ```
 
 ## 例举至少 3 种强制类型转换和 2 种隐式类型转换
-1. 强制类型转换：明确调用内置函数，强制把一种类型的值转换为另一种类型。强制类型较好的主要有：
+1. 强制类型转换：明确调用内置函数，强制把一种类型的值转换为另一种类型。强制类型转换的主要有：
 Boolean, Number, String, parseInt, parseFloat
 
 2. 隐匿类型转换：在使用算术运算符时，运算符两边的数据类型可以是任意的，比如，一个字符串可以和数字相加，
@@ -409,4 +409,28 @@ console.log(x);
 // if(xxx = function() {})
 // 因此我们是找不到 f 的
 // 答案：1undefined;
+```
+
+```js
+function t1(a) {
+  a.name = 'wang';
+}
+function t2(a) {
+  a = {name: 'li'}
+}
+b = {name: 'cheng'}
+
+t2(b)
+console.log(b)
+
+t1(b)
+console.log(b)
+
+
+// 答案
+t2(b)
+console.log(b) // {name: 'cheng'}
+
+t1(b)
+console.log(b) // {name: 'wang'}
 ```
