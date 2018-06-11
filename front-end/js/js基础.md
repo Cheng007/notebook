@@ -157,9 +157,9 @@ if (typeof (result) == 'object') {
 
 ```js
 var b = new Array();
-Array.prototype.constructor = Array;
-b.constructor = Array;
-b.__proto__ = Array.prototype; // __proto__用于指向创建它的构造函数的原型对象
+Array.prototype.constructor === Array;
+b.constructor === Array;
+b.__proto__ === Array.prototype; // __proto__用于指向创建它的构造函数的原型对象
 ```
 
 ## 写出下列打印的结果
