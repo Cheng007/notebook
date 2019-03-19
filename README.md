@@ -15,6 +15,7 @@
 - [重复添加事件监听导致的内存泄露问题](./front-end/js/重复添加事件监听导致的内存泄露问题.md)
 - [map, forEach, reduce的区别](./front-end/js/map,forEach,reduce的区别.md)
 - [代码片断](./front-end/js/代码片断.md)
+- [文件下载](./front-end/js/文件下载.md)
 
 ## 待解决问题
 
