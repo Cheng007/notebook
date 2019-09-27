@@ -16,6 +16,7 @@
 - [map, forEach, reduce的区别](./front-end/js/map,forEach,reduce的区别.md)
 - [代码片断](./front-end/js/代码片断.md)
 - [文件下载](./front-end/js/文件下载.md)
+- [常用正则](./front-end/js/常用正则.md)
 
 ## 待解决问题
 
