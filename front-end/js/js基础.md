@@ -21,6 +21,7 @@ typeof true; // boolean
 typeof Boolean(''); // boolean， Boolean的参数是0, -0, null, false, NaN, undefined, ''为false，其它任何对象或字符串'false'都为true
 typeof function a() {}; // function
 typeof Object; // function， Object, Function, Boolean, String, Symbol, Number 均是 function 类型
+typeof Null; // undefined
 typeof new Function('a', 'b', 'return a + b'); // function
 typeof new a(); // object
 typeof [1, 2, 3]; // object
