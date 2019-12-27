@@ -7,10 +7,10 @@ js中有两大数据类型：
 1. 基础类型
 2. 引用类型
 
-- 基础类型包括：Number, String, Boolean, Null, Undefined, Symbol（ES2015新增）
+- 基础类型包括：Number, String, Boolean, Null, Undefined, Symbol（ES2015新增）, BigInt
 - 引用类型包括：Object，typeof返回的类型和js定义的类型有细微差异。
-typeof 返回的值有七种可能值：
-number, string, object, boolean, undefined, symbol, function
+typeof 返回的值有八种可能值：
+number, string, object, boolean, undefined, symbol, function, bigint
 
 示例如下：
 ```js
