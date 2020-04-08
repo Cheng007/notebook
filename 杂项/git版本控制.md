@@ -286,6 +286,15 @@ git stash pop
 ```bash
 # 生成一个可供发布的压缩包
 git archive
+
+# 合并特定的 commit
+git cherry-pick [commit]
+
+# 合并一段特定的 commit
+git cherry-pick [commit-start]^..[commit-end]
+
+# 在提交前修改（合并）本地特定条 commit 记录
+git rebase -i HEAD~[number]
 ```
 
 ## git branch
