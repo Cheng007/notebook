@@ -331,6 +331,37 @@ git branch --edit-description [<branchname>]
 
 注：可选模式就是正则
 
-参考：
+## git status
+用于显示工作区和暂存区的状态，使用此命令能看到那些修改被暂存到了, 哪些没有, 哪些文件没有被 Git 追踪到，
+该命令不会显示已经`commit`到仓库中的文件
+
+```
+git status [<options>...] [--] [<pathspec>...]
+```
+
+options:
+
+```
+-v, --verbose         be verbose
+-s, --short           show status concisely
+-b, --branch          show branch information
+--show-stash          show stash information
+--ahead-behind        compute full ahead/behind values
+--porcelain[=<version>]
+											machine-readable output
+--long                show status in long format (default)
+-z, --null            terminate entries with NUL
+-u, --untracked-files[=<mode>]
+											show untracked files, optional modes: all, normal, no. (Default: all)
+--ignored[=<mode>]    show ignored files, optional modes: traditional, matching, no. (Default: traditional)
+--ignore-submodules[=<when>]
+											ignore changes to submodules, optional when: all, dirty, untracked. (Default: all)
+--column[=<style>]    list untracked files in columns
+--no-renames          do not detect renames
+-M, --find-renames[=<n>]
+											detect renames, optionally set similarity index
+```
+
+## 参考：
 [git-scm](https://git-scm.com/docs)
 [常用 Git命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
