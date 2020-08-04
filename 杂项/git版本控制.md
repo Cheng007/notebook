@@ -295,6 +295,9 @@ git cherry-pick [commit-start]^..[commit-end]
 
 # 在提交前修改（合并）本地特定条 commit 记录
 git rebase -i HEAD~[number]
+
+# 修改最新commit的提交信息
+git commit --amend
 ```
 
 ## git branch
