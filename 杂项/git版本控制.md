@@ -14,6 +14,9 @@ git init [project-name]
 
 # 下载一个项目和它的整个代码历史
 git clone [url]
+
+# 项目太大，为了加快下载速度，clone 时可以加上 `--depth=1`
+git clone [url] --depth=1
 ```
 
 二、 配置
@@ -124,6 +127,9 @@ git branch -d [branch-name]
 # 删除远程分支
 git push origin --delete [branch-name]
 git branch -dr [remote/branch]
+
+# 更新远程分支本地列表
+git remote update origin --prune
 ```
 
 六、标签

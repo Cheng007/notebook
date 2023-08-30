@@ -65,3 +65,15 @@
 
 2. 对于行内元素（除可替换元素外）来说，尽管内容周围存在内边距与边框，但其占用空间（每一行文字的高度）由 line-height 属性决定，
 即使边框和内边距仍会显示在内容周围
+
+# flex 布局让子元素高度为容器的100%
+```css
+.container {
+    display: flex;
+    /* align-items: center，子元素会按自己的实际高度来 */
+}
+.child-100 {
+    display: flex;
+    /* align-items: center; */
+}
+```
