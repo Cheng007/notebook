@@ -77,3 +77,28 @@
     /* align-items: center; */
 }
 ```
+
+## 关于 `box-shadlow` 阴影被覆盖问题
+可以添加 `position: relative` 和 `z-index` 来解决
+
+## `svg` 元素下 `xlink:href` 属性选择不生效问题
+有如下 `svg`，需要通过CSS选择器选中 `xlink:href` 属性值为 `#qdms-icon-sousuo` 的 `use` 标签
+```html
+<svg>
+  <use xlink:href="#qdms-icon-sousuo"></use>
+</svg>
+```
+
+常规方式如下：
+```css
+svg use[xlink\:href="#qdms-icon-sousuo"] {
+
+}
+```
+实测下来不生效，需要使用如下方式，参考[这里](https://stackoverflow.com/questions/27398745/how-to-use-css-attribute-selector-for-an-svg-element-with-namespaced-attribute-h)
+```css
+@namespace xlink 'http://www.w3.org/1999/xlink';
+svg use[xlink|href='#qdms-icon-sousuo'] {
+
+}
+```
