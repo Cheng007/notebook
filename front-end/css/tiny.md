@@ -102,3 +102,56 @@ svg use[xlink|href='#qdms-icon-sousuo'] {
 
 }
 ```
+
+## 会级元素靠右
+
+HTML 如下：
+```html
+<div class="parent">
+  <div class="block"></div>
+</div>
+```
+1. 使用 `margin` 属性
+```css
+.block {
+  margin-left: auto;
+}
+```
+
+将 `margin-left` 设为 `auto` 后, 元素左边的 `margin` 会被尽可能的撑大, 所以自然就把元素挤到右边去了
+
+2. 使用 `position` 属性
+```css
+.parent {
+  position: relative;
+}
+.block {
+  position: absolute;
+  right: 0;
+}
+```
+
+3. 使用 `float` 属性
+```css
+.block {
+  float: right;
+}
+```
+
+4. 使用 `text-align` 属性
+```css
+.parent {
+  text-align: right;
+}
+.block {
+  display: inline-block;
+}
+```
+
+5. 使用 `flex` 属性
+```css
+.parent {
+  display: flex;
+  justify-content: flex-end;
+}
+```
