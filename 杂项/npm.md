@@ -30,3 +30,6 @@ npm link ../node-redis     # link the dir of your dependency
 (cd ../node-redis; npm link)
 npm link redis
 ```
+
+## npx
+从 `npm` `5.2` 版本开始就自带的命令，`npx` 可以运行使用 Node.js 构建并通过 `npm` 仓库发布的代码

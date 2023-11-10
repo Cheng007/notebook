@@ -103,7 +103,7 @@ svg use[xlink|href='#qdms-icon-sousuo'] {
 }
 ```
 
-## 会级元素靠右
+## 块级元素靠右
 
 HTML 如下：
 ```html
