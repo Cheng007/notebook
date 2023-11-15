@@ -10,7 +10,7 @@ setTimeout(() => {
 }, 1000)
 ```
 
-2. pending callbacks
+2. pending callbacks(I/O callbacks)
 执行延迟到下一个循环迭代的 I/O 回调，此阶段对某些系统操作（如 TCP 错误类型）执行回调
 
 3. idle, prepare
@@ -69,6 +69,7 @@ fs.readFile(__filename, () => {
 ```
 
 ```js
+const http = require('http')
 const hostname = '127.0.0.1';
 const port = 3000;
 const server = http.createServer((req, res) => {
@@ -112,4 +113,19 @@ function testEventLoop() {
     console.log('Poll phase - promise')
   })
 }
+```
+
+运行结果
+
+```
+=============
+Poll phase
+Poll phase - nextTick
+Poll phase - promise
+Check phase
+Check phase - nextTick
+Check phase - promise
+Timer phase
+Timer phase - nextTick
+Timer phase - promise
 ```
