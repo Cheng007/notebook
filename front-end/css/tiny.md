@@ -66,6 +66,14 @@
 2. 对于行内元素（除可替换元素外）来说，尽管内容周围存在内边距与边框，但其占用空间（每一行文字的高度）由 line-height 属性决定，
 即使边框和内边距仍会显示在内容周围
 
+3. `line-height` 不同取值情况
+- 1.5（无单位）
+`line-height` 实际结果为 1.5 * 该元素的字体大小，推荐设置方法，不会在继承时产生不确定结果
+- 150%
+`line-height` 实际结果为 150% * 元素计算出的字体大小，可能产生不确定的结果
+- 1.5 em
+可能会产生不确定的结果
+
 # flex 布局让子元素高度为容器的100%
 ```css
 .container {
@@ -153,5 +161,32 @@ HTML 如下：
 .parent {
   display: flex;
   justify-content: flex-end;
+}
+```
+
+# 宽度不定元素，定宽高比实现
+```html
+<div class="parent">
+  <div class="child"></div>
+</div>
+```
+1. 使用 `aspect-ratio`
+```css
+.child {
+  aspect-ratio: 1 / 1;
+}
+```
+
+2. 使用 `padding-top` 或 `padding-bottom` 的原理是：垂直方向上的 `margin` 和 `padding`,使用百分比做单位时，是根据父元素的宽度作为标准的来进行计算的
+```css
+.parent{
+  width: 500px;
+  height: 500px;
+}
+.child{
+  width:100%;
+  height: 0;
+  padding: 0;
+  padding-top:75%;
 }
 ```
