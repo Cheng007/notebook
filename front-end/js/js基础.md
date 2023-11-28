@@ -109,6 +109,15 @@ xhr.send(); // 发送数据
 - 400-499 客户端错误
 - 500-599 服务器错误
 
+常见状态码：
+- 200 OK
+- 304 Not Modified 协商缓存
+- 400 Bad Request 客户端请求报文中存在语法错误，服务器无法理解
+- 403 Forbidden
+- 404 Not Found
+- 500 Internal Server Error
+- 503 Service Unavailable 由于超载或系统维护，服务器暂时的无法处理客户端的请求
+
 200 请求成功
 302 请求的资源临时从不同的 URI 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。
 只有在 Cache-Control 或 Expires 中进行了指定的情况下，这个响应才是可缓存的
