@@ -77,7 +77,7 @@ Boolean, Number, String, parseInt, parseFloat
 ## BOM 对象有哪些，列举 window 对象
 - window 对象，是浏览器环境中 js 的最顶层对象，其它的 BOM 对象都是 window 对象的属性；
 - location 对象，浏览器当前url信息；
-- navigator 对象，流利器本身信息
+- navigator 对象，浏览器本身信息
 - screen 对象，客户端屏幕信息；
 - history 对象，浏览器访问历史信息
 
@@ -279,7 +279,7 @@ console.log(test.call(obj.prop)) // Aurelio
 function fun(n,o) {
   console.log(o)
   return {
-    fun:function(m){
+    fun: function(m){
       return fun(m,n);
     }
   };
@@ -318,7 +318,7 @@ Foo.prototype.getName = function() {
   console.log(3);
 };
 var getName = function () {
-  console.log(console.log(4));
+  console.log(4);
 };
 function getName() {
   console.log(5);
