@@ -29,10 +29,27 @@ setImmediate(() => {
 ```
 6. close callbacks
 
+## 主线程同步代码执行完毕后，会先执行微任务再执行宏任务
+常见的微任务和宏任务
+微任务: 
+- promise.then()
+- MutationObserver
+- process.nextTick（Node.js环境，node微任务会在nextTick之后，下一个tick之前执行）
+
+宏任务:
+- script（整体代码）
+- setTimeout
+- setInterval
+- MessageChannel（比setTimeout早执行，React Scheduler 使用方式）
+- setImmediate（Node.js环境）
+
+## 微任务穿插在各个阶段间执行
+在事件循环的六个阶段每个阶段执行完后会清空微任务队列
+
 ## `setImmediate()` 对比 `setTimeout()`
 如果`setImmediate()`是在 I/O 周期内被调度的，那它将会在其中任何的定时器之前执行
 
-## `process.nextTick()`
+## `process.nextTick()` 快于其他微任务
 `process.nextTick()`不是事件循环的一部分，传递到 process.nextTick() 的回调将在事件循环继续之前执行
 使用场景：
 1. 回调事件同步变异步
@@ -43,6 +60,118 @@ setImmediate(() => {
 
 
 ## 代码测试
+
+```js
+console.log("start");
+
+setTimeout(() => {
+  console.log("setTimeout");
+});
+
+setImmediate(() => {
+  console.log("setImmediate");
+});
+
+Promise.resolve().then(() => {
+  console.log("Promise.resolve");
+});
+
+process.nextTick(() => {
+  console.log("process.nextTick");
+});
+
+console.log("end");
+```
+执行结果
+```
+start
+end
+process.nextTick
+Promise.resolve
+setTimeout
+setImmediate
+```
+
+```js
+// timers阶段
+setTimeout(() => {
+  console.log("setTimeout");
+
+  Promise.resolve().then(() => {
+    console.log("setTimeout Promise.resolve");
+  });
+});
+
+// check阶段
+setImmediate(() => {
+  console.log("setImmediate");
+  Promise.resolve().then(() => {
+    console.log("setImmediate Promise.resolve");
+  });
+});
+
+// 微任务
+Promise.resolve().then(() => {
+  console.log("Promise.resolve");
+});
+
+// 微任务
+process.nextTick(() => {
+  console.log("process.nextTick");
+  Promise.resolve().then(() => {
+    console.log("nextTick Promise.resolve");
+  });
+});
+```
+
+运行结果
+```
+process.nextTick
+Promise.resolve
+nextTick Promise.resolve
+setTimeout
+setTimeout Promise.resolve
+setImmediate
+setImmediate Promise.resolve
+```
+
+```js
+const fs = require('fs')
+const path = require('path')
+fs.readFile(path.resolve(__dirname, './node.js'), () => {
+  // 此时已经进入 poll 阶段了
+
+  setTimeout(() => {
+    console.log('setTimeout')
+  })
+
+  setImmediate(() => {
+    console.log('setImmediate')
+    process.nextTick(() => {
+      console.log('setImmediate nextTick')
+    })
+  })
+
+  process.nextTick(() => {
+    console.log('nextTick1')
+  })
+
+  process.nextTick(() => {
+    console.log('nextTick2')
+  })
+
+  console.log('start')
+})
+```
+运行结果
+```
+start
+nextTick1
+nextTick2
+setImmediate
+setImmediate nextTick
+setTimeout
+```
 
 ```js
 // timeout_vs_immediate.js
