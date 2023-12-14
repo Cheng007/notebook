@@ -190,3 +190,17 @@ HTML 如下：
   padding-top:75%;
 }
 ```
+
+# Img 图标变色
+```html
+<div class="icon"></div>
+```
+```css
+.icon {
+  width: 200px;
+  height: 200px;
+  background: red;
+  /* B站字幕防遮挡就是用的这种方式 */
+  -webkit-mask: url(./icon.png) no-repeat;
+}
+```
