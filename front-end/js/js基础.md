@@ -59,6 +59,22 @@ console.log(typeof str++); // number，因为str++ 为 NaN;
 console.log(str); // NaN
 ```
 
+## 数字
+```js
+11 // 11
+.11 // 11
+11. // 11
+011 // 9，0 开头的为 8 进制数
+080 // 9，0 开头的为 8 进制数，但超出范围了，还是按 10 进制处理
+0o11 // 9，0o 开头的为 8 进制数
+0o80 // Uncaught SyntaxError: Invalid or unexpected token，0o 开头的为 8 进制数，超出范围报错
+0b11 // 3，0b 开头的为 2 进制数
+0x11 // 17，0x 开头的位 16 进制数
+11e2 // 1100，11 * (10 ** 2)
+11.toString() // Uncaught SyntaxError: Invalid or unexpected token，(11.)toString()
+11 .toString() // 11
+```
+
 ## 例举至少 3 种强制类型转换和 2 种隐式类型转换
 1. 强制类型转换：明确调用内置函数，强制把一种类型的值转换为另一种类型。强制类型转换的主要有：
 Boolean, Number, String, parseInt, parseFloat
