@@ -204,3 +204,19 @@ HTML 如下：
   -webkit-mask: url(./icon.png) no-repeat;
 }
 ```
+
+# 自适应多倍图
+响应式背景图
+```css
+.img {
+  /* 根据分辨率自动选择 */
+  background-image: image-set(
+    url('./service-1.png') 1x,
+    url('./service-2.png') 2x
+  );
+}
+```
+响应式图片
+```html
+<img srcset="img1.jpg 1x, img2.jpg 2x" />
+```
