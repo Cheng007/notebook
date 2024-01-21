@@ -152,7 +152,7 @@ var func = new Func();
 // 1 创建一个空对象
 var obj = {};
 // 2 设置原型链
-obj.__proto__ = Func.prototype;
+obj.__proto__ = Func.prototype; // 或 Object.setPrototypeOf(obj) = Func.prototype
 // 3 让 Func 中的 this 指向 obj, 并执行 Func 的函数体
 var result = Func.call(obj);
 // 4 判断 Func 的返回值类型：
@@ -166,7 +166,8 @@ if (typeof (result) == 'object') {
 
 ## 原型、原型链
 
-- 原型：每创建一个函数，函数上都有一个属性为 prototype，它的值是一个对象。 
+- 原型：一种实现对象继承的机制，它允许对象共享属性和方法。
+每创建一个函数，函数上都有一个属性为 prototype，它的值是一个对象。 
 这个对象的作用在于当使用函数创建实例的时候，那么这些实例都会共享原型上的属性和方法。
 - 原型链：每个对象都有一个指向它的原型（prototype）对象的内部链接（proto）。这个原型对象又有自己的原型，
 直到某个对象的原型为 null 为止（也就是不再有原型指向）。这种一级一级的链结构就称为原型链（prototype chain）。
@@ -174,15 +175,16 @@ if (typeof (result) == 'object') {
 仍然没有找到指定的属性，就会返回 undefined
 
 ```js
-var b = new Array();
+var b = new Array(); // 或 var b = []
 Array.prototype.constructor === Array;
 b.constructor === Array;
 b.__proto__ === Array.prototype; // __proto__用于指向创建它的构造函数的原型对象
+Object.getPrototypeOf(b) === Array.prototype
 ```
 
 ## 原型的作用
 
-之所以存在原型，是因为 JS 语言要实现面向对象，而原型的面向对象的实现手段之一。一个能支持面向对象的语言必须做到一点：
+之所以存在原型，是因为 JS 语言要实现面向对象，而原型是面向对象的实现手段之一。一个能支持面向对象的语言必须做到一点：
 能判定一个实例的类型。在 JS 中，通过原型就可以知晓某个对象从属于哪个类型，换句话说，原型的存在避免了类型的丢失。
 
 ## 写出下列打印的结果
