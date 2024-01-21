@@ -14,3 +14,12 @@
 ```
 13.250.177.223 github.com
 ```
+
+## 使用 翻墙工具 后还是连接超时
+背景：之前翻墙后可以正常推代码的，但最近一直推不上去
+现象：浏览器可以打开 github仓库地址，但使用`git push` 代码一直推不上去，提示连接超时
+解决方案：设置 git 代理到指定端口，假如翻墙工具http代理的端口是 7890
+```bash
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy https://127.0.0.1:7890
+```
