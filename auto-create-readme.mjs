@@ -11,6 +11,8 @@ const __dirname = path.dirname(__filename)
 const blackFile = ['readme.md']
 const blackDir = ['img']
 
+const readmePath = path.resolve(__dirname, './README.md')
+
 async function getDir() {
   const genContent = (dir, deep = 0) => {
     const list = fs.readdirSync(dir, { withFileTypes: true })
@@ -48,7 +50,6 @@ async function getDir() {
   }
 
   const content = genContent(__dirname)
-  const readmePath = path.resolve(__dirname, './README.md')
   await fs.promises.writeFile(readmePath, content, { encoding: 'utf8' })
 }
 
