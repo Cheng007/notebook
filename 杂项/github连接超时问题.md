@@ -28,3 +28,15 @@ git config --global https.proxy https://127.0.0.1:7890
 ```bash
 git config --global -l
 ```
+
+删除代理
+```bash
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
+Mac 刷新 DNS
+```bash
+dscacheutil -flushcache
+sudo killall -HUP mDNSResponder
+```
