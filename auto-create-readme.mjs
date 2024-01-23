@@ -8,7 +8,7 @@ import path from 'node:path'
 const __filename = new URL(import.meta.url).pathname;
 const __dirname = path.dirname(__filename)
 
-const blackFile = ['readme.md']
+const blackFile = ['readme.md', '泛泛而谈.md']
 const blackDir = ['img']
 
 const readmePath = path.resolve(__dirname, './README.md')
