@@ -48,4 +48,12 @@
 
 - 使用 `async`/`defer` 属性在加载脚本的时候不阻塞 HTML 的解析，defer 加载脚本执行会在所有元素解析完成，DOMContentLoaded 事件触发之前完成执行。它的用途其实跟 preload 十分相似
 
-![看图](./img/script-async-defer.jpeg)
+- `type="module"`，此值导致代码被视为 JavaScript 模块。其中的代码内容会延后处理。charset 和 defer 属性不会生效
+  模块有如下特性：
+  代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。
+  模块脚本自动采用严格模式，不管有没有声明`use strict`。
+  模块之中，可以使用 `import`命令加载其他模块（.js后缀不可省略，需要提供绝对 URL 或相对 URL），也可以使用`export`命令输出对外接口。
+  模块之中，顶层的this关键字返回undefined，而不是指向window。也就是说，在模块顶层使用this关键字，是无意义的。
+  同一个模块如果加载多次，将只执行一次
+
+![看图](./img/script-async-defer.png)
