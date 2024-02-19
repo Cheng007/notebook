@@ -459,3 +459,29 @@ console.log(b) // {name: 'cheng'}
 t1(b)
 console.log(b) // {name: 'wang'}
 ```
+
+## 如何准确判断一个值是数组类型
+
+使用 `Object.prototype.toString.call` 可能不准确
+```js
+let obj = {
+  [Symbol.toStringTag]: 'Array'
+}
+Object.prototype.toString.call(obj) === '[object Array]' // true
+```
+
+使用 `instanceof` 可能不准确
+```js
+let obj = {}
+Object.setPrototypeOf(obj, Array.prototype)
+obj instanceof Array // true
+```
+
+准确的方案是使用 `Array.isArray`
+```js
+let obj = {
+  [Symbol.toStringTag]: 'Array'
+}
+Object.setPrototypeOf(obj, Array.prototype)
+Array.isArray(obj) // false
+```
