@@ -174,7 +174,8 @@ setTimeout
 ```
 
 ```js
-// timeout_vs_immediate.js
+// timeout_vs_immediate
+// 先后顺序不确定
 setTimeout(() => {
   console.log('timeout');
 }, 0);
@@ -184,7 +185,8 @@ setImmediate(() => {
 });
 ```
 ```js
-// timeout_vs_immediate.js
+// timeout_vs_immediate
+// 这个场景下能确定先后顺序
 const fs = require('fs');
 
 fs.readFile(__filename, () => {
