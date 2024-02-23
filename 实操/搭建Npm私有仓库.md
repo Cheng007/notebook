@@ -51,6 +51,14 @@ npm adduser --registry http://localhost:4873/
 npm publish --registry http://localhost:4873/
 ```
 
+## 如何删除发布的包
+```bash
+# 删除整个包
+npm unpublish packagename --force
+# 删除某个版本的包
+npm unpublish packagename@1.0.0 --force
+```
+
 ### PM2 常用命令
 | 命令 | 描述 |
 |----|----|
