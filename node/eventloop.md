@@ -29,6 +29,8 @@ setImmediate(() => {
 ```
 6. close callbacks
 
+![event-loop](./img/event-loop.png)
+
 ## 主线程同步代码执行完毕后，会先执行微任务再执行宏任务
 常见的微任务和宏任务
 微任务: 
@@ -259,4 +261,49 @@ Check phase - promise
 Timer phase
 Timer phase - nextTick
 Timer phase - promise
+```
+
+```js
+var i = 0;
+var start = new Date();
+function foo () {
+  i++;
+  if (i < 1000) {
+    setImmediate(foo);
+  } else {
+    var end = new Date();
+    console.log("Execution time: ", (end - start));
+  }
+}
+foo();
+```
+
+```js
+var i = 0;
+function foo() {
+  i++;
+  if (i > 3) {
+    return;
+  }
+  console.log("foo", i);
+  setTimeout(() => {
+    console.log("setTimeout", i);
+  }, 0);
+  process.nextTick(foo);
+}
+
+setTimeout(foo, 2);
+setTimeout(() => {
+  console.log("Other setTimeout");
+}, 2);
+```
+运行结果
+```bash
+foo 1
+foo 2
+foo 3
+Other setTimeout
+setTimeout 4
+setTimeout 4
+setTimeout 4
 ```
