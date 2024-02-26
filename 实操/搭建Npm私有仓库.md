@@ -46,6 +46,11 @@ nrm use local
 npm adduser --registry http://localhost:4873/
 ```
 
+- 查看当前登录 npm 用户
+```bash
+npm who i am
+```
+
 - 切换到项目，发布
 ```bash
 npm publish --registry http://localhost:4873/
