@@ -485,3 +485,14 @@ let obj = {
 Object.setPrototypeOf(obj, Array.prototype)
 Array.isArray(obj) // false
 ```
+
+## `++a`和`a++`的区别
+- ++a（前缀自增）：先将a的值加1，然后返回a的新值。
+- a++（后缀自增）：先返回a的当前值，然后将a的值加1。
+```js
+let a = 1;
+let b = ++a; // a现在是2，b也是2
+
+let c = 1;
+let d = c++; // c现在是2，但d是1
+```
