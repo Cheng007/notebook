@@ -33,3 +33,44 @@ npm link redis
 
 ## npx
 从 `npm` `5.2` 版本开始就自带的命令，`npx` 可以运行使用 Node.js 构建并通过 `npm` 仓库发布的代码
+
+## `init` 命令
+创建一个`package.json`文件，别名：`create`, `innit`
+```bash
+npm init
+```
+
+### `init` 命令其他使用方式
+```bash
+npm init <package-spec> (same as `npx <package-spec>`)
+npm init <@scope> (same as `npx <@scope>/create`)
+```
+`init` 命令会转化成`npm exec`操作，例如：
+```bash
+npm init foo
+# 转化成
+npm exec create-foo
+```
+```bash
+npm init @usr/foo 
+# 转化成
+npm exec @usr/create-foo
+```
+```bash
+npm init @usr
+# 转化成
+npm exec @usr/create
+```
+```bash
+npm init @usr@2.0.0
+# 转化成
+npm exec @usr/create@2.0.0
+```
+```bash
+npm init @usr/foo@2.0.0
+# 转化成
+npm exec @usr/create-foo@2.0.0
+```
+
+## `exec`命令
+从本地或远程npm包中运行命令，别名`x`
