@@ -33,7 +33,7 @@ Renderer（渲染器）—— 负责将变化的组件渲染到页面上。
   pendingProps: any,  // 新的变动带来的新的props
   memoizedProps: any,  // 上一次渲染完成之后的props
   updateQueue: UpdateQueue<any> | null,  // 该Fiber对应的组件产生的Update会存放在这个队列里面
-  memoizedState: any, // 上一次渲染的时候的state
+  memoizedState: any, // 上一次渲染的时候的state, hooks链表
     
   // Scheduler 相关 old
   // expirationTime: ExpirationTime,  // 代表任务在未来的哪个时间点应该被完成，不包括他的子树产生的任务
