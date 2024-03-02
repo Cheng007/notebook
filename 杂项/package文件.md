@@ -26,3 +26,9 @@ npm uninstall koa -w a
 ```bash
 npm run test -w a -w main
 ```
+
+## publishConfig
+配置发布相关的选项。允许设置以下参数：
+- registry：指定包发布的目标注册表。默认情况下，包会发布到官方的npm公共注册表，但你可以更改为其他私有或企业级的注册表。
+- tag：允许你指定一个标签，而不是默认的"latest"标签。这对于管理不同版本的发布非常有帮助，确保只有确定的版本被标记为最新。
+- access：控制谁可以访问你的包。可能的值包括`public`（任何人都可以访问）、`restricted`（只有受限的用户和开发者可以访问）和`private`（只有你自己可以访问）。
