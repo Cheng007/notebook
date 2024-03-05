@@ -6,6 +6,14 @@
 ## bin
 `bin` 是命令到本地文件的映射
 
+## version
+`version` 当前版本号，也是推送到仓库时显示的版本号，格式`Major.Minor.Patch`，npm 提供了命令来升级版本号：
+```bash
+npm version patch
+npm version minor
+npm version major
+```
+
 ## workspaces
 配置在 package.json 中的 `workspaces` 字段，在根目录执行 `npm i` 的时候会 `workspace` 里的依赖软链接到根目录的`node_modules`里。
 npm 大部分命令都能指定到某个或多个工作区，使用`-w`参数
