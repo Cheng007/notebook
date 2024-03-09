@@ -43,3 +43,25 @@ npm run test -w a -w main
 
 ## files
 npm包作为依赖安装时要包括的文件
+
+## peerDependencies
+对等依赖，用于声明当前包所依赖的外部包的版本范围。这些外部包通常是与当前包一起使用的库或框架。
+假如你正在开发一个 webpack 插件 W， W 依赖于 webpack4，
+则需要指明类似：`{"peerDependencies": "4.0.0"}`，如果宿主环境安装了不兼容的 webpack 版本5，则在`npm i` 的时候会报错，
+尝试解决办法：
+
+- 安装时忽略 peerDependencies 的版本冲突
+```bash
+npm i --legacy-peer-deps
+```
+
+- 使用`overrides`字段
+```json
+{
+  "overrides": {
+    "webpack": ">=5.0.0"
+  }
+}
+```
+
+上面的方法都只是能解决安装时的报错问题，运行时是否正常取决于包和宿主环境之间的兼容性。
