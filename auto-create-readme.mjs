@@ -9,7 +9,7 @@ const __filename = new URL(import.meta.url).pathname;
 const __dirname = path.dirname(__filename)
 
 const blackFile = ['readme.md', '泛泛而谈.md']
-const blackDir = ['img']
+const blackDir = ['img', 'temp']
 
 const readmePath = path.resolve(__dirname, './README.md')
 
