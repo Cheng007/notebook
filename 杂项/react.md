@@ -22,3 +22,34 @@
 调用 setState 即意味着即将触发重新渲染
 - 和页面展示/更新无关的数据，不维护在 state 中，如果这个变量都不会在界面上显示，或者说，不会因为这个变量的改变而触发更新，可以考虑不在 state 中维护，例如，像做计数器之类的变量，可以使用 useRef 存储。
 - 合并 state，减少频繁 setState 的场景。
+
+## 从列表进详情页然后返回列表，如何保存列表页查询状态
+1. 在跳转之前保存列表查询条件至 history 的 state 中，
+2. 正常跳转到详情页
+3. 返回列表页时从当前 history 的 state 里拿到保存列表查询条件并重新获取列表数据
+
+参考伪代码：
+```js
+// below code in list page
+
+const search = {
+  name: '1',
+  pageSize: 10,
+  pageNum: 1,
+}
+
+// 步骤1
+history.replace(
+  'currentPathname', // replace 当前路由
+  state: search // 同时保存查询参数到当前路由state中
+)
+
+// 步骤2
+history.push(
+  'detailPathname',
+  state: 'targetRouteState'
+)
+
+// 步骤3
+hisotry.state
+```
