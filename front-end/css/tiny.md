@@ -216,7 +216,7 @@ HTML 如下：
   );
 }
 ```
-响应式图片
+响应式图片（图片尺寸 = CSS 尺寸 * DPR）
 ```html
 <img srcset="img1.jpg 1x, img2.jpg 2x" />
 ```
