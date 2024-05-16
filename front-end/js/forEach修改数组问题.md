@@ -18,7 +18,7 @@ forEach的回调函数中第三个参数 array 是对正在操作数组的引用
 
 ```js
 let a = [1, 2, 3];
-a.forEach((item ,index, array) => array[i] = 0); // a = [0, 0, 0]
+a.forEach((item ,index, array) => array[index] = 0); // a = [0, 0, 0]
 ```
 
 ## 补充
