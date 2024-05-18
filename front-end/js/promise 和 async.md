@@ -113,6 +113,7 @@ async function test() {
 
 test();
 console.log(3);
+Promise.resolve().then(() => console.log(4))
 ```
 
 示例 2
@@ -130,6 +131,7 @@ async function test() {
 
 test();
 console.log(4);
+Promise.resolve().then(() => console.log(5))
 ```
 
 示例 3
