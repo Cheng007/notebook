@@ -496,3 +496,25 @@ let b = ++a; // a现在是2，b也是2
 let c = 1;
 let d = c++; // c现在是2，但d是1
 ```
+
+```js
+let bb = 1
+function aa(bb) {
+  bb = 2
+  cc = 3
+  console.log(bb) // 2
+}
+aa(bb)
+console.log(bb) // 1
+```
+
+```js
+let bb = 1
+function aa() {
+  bb = 2
+  cc = 3
+  console.log(bb) // 2
+}
+aa(bb)
+console.log(bb) // 2
+```
