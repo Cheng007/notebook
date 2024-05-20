@@ -1,5 +1,8 @@
 # Vue 相关
 
+## 官方文档
+见[这里](https://cn.vuejs.org/)
+
 ## 组件二次封装透传
 - 属性和事件等：`$attrs` 对象包含了除组件所声明的 `props` 和 `emits` 之外的所有其他 attribute，例如 class，style，v-on 监听器等等
 (vue2 中事件没集合到 $attrs 里需单独设置 v-on="$listeners")
