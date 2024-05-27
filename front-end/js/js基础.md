@@ -518,3 +518,26 @@ function aa() {
 aa(bb)
 console.log(bb) // 2
 ```
+
+## 字符串的 `substring()` 和 `slice()` 区别
+这两个方法都是截取字符串的字串，包括 `indexStart` 不包括 `indexEnd`，两者的区别：
+- `substring()` 方法在 `indexStart` 大于 `indexEnd` 的情况下会交换它的两个参数，这意味着仍会返回一个字符串。而 `slice()` 方法在这种情况下返回一个空字符串。
+- 如果两个参数中的任何一个或两个都是负数或 `NaN`，`substring()` 方法将把它们视为 0
+- `slice()` 方法也将 `NaN` 参数视为 0，但当给定负值时，它会从字符串的末尾开始反向计数以找到索引。
+
+`substring(indexStart, indexEnd)` 具体来说：
+
+- 如果省略了 `indexEnd`，则 `substring()` 提取字符直到字符串的末尾。
+- 如果 `indexStart` 等于 `indexEnd`，则 `substring()` 返回一个空字符串。
+- 如果 `indexStart` 大于 `indexEnd`，则 `substring()` 的效果就像交换了这两个参数一样。
+- 任何小于 0 或大于 str.length 的参数值都会被视为分别等于 0 和 str.length。
+- 任何值为 `NaN` 的参数将被视为等于 0。
+
+`slice(indexStart, indexEnd)` 具体来说：
+- 如果 `indexStart` >= `str.length`，则返回一个空字符串。
+- 如果 `indexStart` < 0，则索引从字符串末尾开始计数。更正式地说，在这种情况下，子字符串从 `max(indexStart + str.length, 0)` 开始。
+- 如果 `indexStart` 被省略、为 `undefined`，或无法转换为数字（使用 `Number(indexStart)`），则将其视为 0。
+- 如果 `indexEnd` 被省略、为 `undefined`，或无法转换为数字（使用 `Number(indexEnd)`），或者 `indexEnd >= str.length`，则 `slice()` 提取到字符串的末尾。
+- 如果 `indexEnd < 0`，则索引从字符串末尾开始计数。更正式地说，在这种情况下，子字符串在 `max(indexEnd + str.length, 0)` 处结束。
+- 在标准化负值后，如果 `indexEnd <= indexStart`（即 `indexEnd` 表示位于 `indexStart` 之前的字符），则返回一个空字符串。
+
