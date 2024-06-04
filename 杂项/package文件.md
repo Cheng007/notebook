@@ -30,7 +30,7 @@ npm install koa -w a
 ```bash
 npm uninstall koa -w a
 ```
-- 执行工作区命名
+- 执行工作区命令
 ```bash
 npm run test -w a -w main
 ```
