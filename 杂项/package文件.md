@@ -65,3 +65,28 @@ npm i --legacy-peer-deps
 ```
 
 上面的方法都只是能解决安装时的报错问题，运行时是否正常取决于包和宿主环境之间的兼容性。
+
+## imports
+指定模块的依赖，可以在其中列出模块的名称和相应的路径，可以实现`路径别名`的功能。
+```json
+{
+  "imports": {
+    "name": "my-app",
+    "lodash": "./node_modules/lodash-es/lodash.js",
+    "@test": "./src",
+  }
+}
+```
+
+## exports
+指定模块的导出规则。可以使用它来指定模块中哪些内容应该被导出，并指定它们的名称和导出的路径。
+```json
+{
+  "name": "my-app",
+  "exports": {
+    ".": "./index.js",
+    "./foo": "./lib/foo.js",
+    "./bar": "./lib/bar.js"
+  }
+}
+```
