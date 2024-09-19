@@ -4,8 +4,9 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url';
 
-const __filename = new URL(import.meta.url).pathname;
+const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const blackFile = ['readme.md', '泛泛而谈.md']
@@ -37,11 +38,11 @@ async function getDir() {
     }).map(i => {
       if (i.isDirectory()) {
         const title = `#`.repeat(deep + 1) + ' ' + i.name
-        const children = genContent(`${i.path}/${i.name}`, deep + 1)
+        const children = genContent(`${dir}/${i.name}`, deep + 1)
         return '\n' + title + '\n' + children
       } else {
         const filename = i.name.slice(0, -3)
-        const relativePath = path.relative(__dirname, i.path)
+        const relativePath = path.relative(__dirname, dir)
         const url = encodeURIComponent(`${relativePath}/${filename}.md`)
         const item = `- [${filename}](${url})`
         return item
