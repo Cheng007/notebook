@@ -5,9 +5,18 @@
 ```mjs
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url';
 
-const __filename = new URL(import.meta.url).pathname;
+// const __filename = new URL(import.meta.url).pathname;
+// const __dirname = path.dirname(__filename)
+
+// 上面代码不行，
+const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
+// 或是在高版本上直接使用下面代码
+const __file = import.meta.filename
+const __dirname = import.meta.filename
 ```
 
 `__filename` 表示当前文件所在路径
