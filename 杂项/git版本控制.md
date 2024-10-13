@@ -34,6 +34,10 @@ git config [--global] user.email "[email address]"
 
 # 设置git文件大小写敏感
 git config core.ignorecase false
+
+# 查看某一项 Git 的配置
+git config --get [config]
+# 如查看设置的git文件大小写是否敏感：git config --get core.ignorecase
 ```
 
 三、增加/删除文件
