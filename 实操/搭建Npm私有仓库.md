@@ -68,9 +68,9 @@ npm unpublish packagename@1.0.0 --force
 | 命令 | 描述 |
 |----|----|
 | `pm2 ls` | 查看进程列表 |
-| `pm2 start [app.js]` | 启动某个应用 |
+| `pm2 start [app.js]` --time | 启动某个应用(日志加上时间) |
 | `pm2 stop [appName/ID]` | 停止某个应用（进程名/ID） |
-| `pm2 restart [app.js]` | 重启某个应用 |
+| `pm2 restart [app.js]` --time | 重启某个应用(日志加上时间) |
 | `pm2 logs [appName/ID]` | 查看应用日志(进程名/ID) |
 | `pm2 delete [appName/ID]` | 删除进程(进程名/ID) |
 | `pm2 stop all` | 停止所有应用 |
