@@ -56,6 +56,8 @@ npm who i am
 npm publish --registry http://localhost:4873/
 ```
 
+`npm publish` 不是增量发布的。每次执行 `npm publish` 时，它会将整个包上传到 `npm` 仓库，而不是仅上传更改的部分。
+
 ## 如何删除发布的包
 ```bash
 # 删除整个包
