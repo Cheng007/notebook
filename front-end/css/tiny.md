@@ -220,3 +220,38 @@ HTML 如下：
 ```html
 <img srcset="img1.jpg 1x, img2.jpg 2x" />
 ```
+
+# flex:1 文本超出省略
+```html
+<div class="flex-container">
+  <div class="flex-item">
+    <div class="text-container">
+      这是一个很长的文本内容，当它超出容器宽度时会显示省略号...
+    </div>
+  </div>
+</div>
+```
+```css
+.flex-container {
+  display: flex;
+  width: 300px; /* 外层容器宽度 */
+}
+
+.flex-item {
+  flex: 1; /* 使子元素占满剩余空间 */
+  display: flex;
+  min-width: 0; /* 关键：防止 flex 子元素溢出 */
+}
+
+.text-container {
+  white-space: nowrap; /* 防止换行 */
+  overflow: hidden; /* 隐藏超出内容 */
+  text-overflow: ellipsis; /* 显示省略号 */
+}
+```
+
+## 关键点
+`min-width: 0`：`min-width` 默认值是 `auto`，将 `min-width` 设置为 `0` 告诉浏览器，即使内容超出容器的宽度，也应该允许元素收缩到容器大小，而不会导致溢出
+
+原理是当你设置了 `min-width: 0;`，它实际上是在告诉浏览器，在计算 flex 布局时，不要考虑元素的最小宽度限制，而是将元素的宽度视为可以收缩到 0 的。
+这样一来，即使元素的内容超出了容器的宽度，元素也会在不溢出容器的情况下收缩到容器的大小，保持布局的完整性。
