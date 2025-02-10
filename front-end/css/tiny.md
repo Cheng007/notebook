@@ -255,3 +255,15 @@ HTML 如下：
 
 原理是当你设置了 `min-width: 0;`，它实际上是在告诉浏览器，在计算 flex 布局时，不要考虑元素的最小宽度限制，而是将元素的宽度视为可以收缩到 0 的。
 这样一来，即使元素的内容超出了容器的宽度，元素也会在不溢出容器的情况下收缩到容器的大小，保持布局的完整性。
+
+## 三张背景图拼满容器，中间的图按 y 轴拉伸
+```less
+.box {
+  @bg-top-height: 16px;
+  @bg-bottom-height: 16px;
+  background:
+    url(./img/top.png) no-repeat center top / 100% @bg-top-height,
+    url(./img/middle.png) no-repeat center @bg-top-height / 100% calc(100% - @bg-top-height - @bg-bottom-height),
+    url(./img/bottom.png) no-repeat center bottom / 100% @bg-bottom-height;
+}
+```
