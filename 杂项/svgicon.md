@@ -236,3 +236,6 @@ svg 图标使用示例
 
 ### 使用 svg-icon 组件时 `click` 事件不生效？
 使用 `@click.native` 即可（vue3无需加`.native`）
+
+###  部分图标颜色无法修改？
+查看 svg 图标代码，手动修改 `fill`/`stroke` 属性为 `currentColor` 试试
