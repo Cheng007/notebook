@@ -206,9 +206,26 @@ svg 图标使用示例
 ```vue
 <template>
   <div>
+    <p>基础使用</p>
     <svg-icon name="arrow" />
-    <p>设置图标颜色</p>
-    <svg-icon name="arrow" />
+
+    <p>默认继承父级的字体颜色和大小</p>
+    <div style="color: orange; font-size: 18px;">
+      <svg-icon name="arrow" />
+      内容
+    </div>
+
+    <p>修改颜色</p>
+    <svg-icon
+      name="arrow"
+      color="#f00"
+    />
+
+    <p>修改大小</p>
+    <svg-icon
+      name="arrow"
+      font-size="30"
+    />
   </div>
 </template>
 ```
