@@ -233,3 +233,6 @@ svg 图标使用示例
   </div>
 <template>
 ```
+
+### 使用 svg-icon 组件时 `click` 事件不生效？
+使用 `@click.native` 即可（vue3无需加`.native`）
