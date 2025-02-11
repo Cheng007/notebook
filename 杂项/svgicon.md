@@ -11,16 +11,11 @@ src
   package.json
   components
     svg-icon
-      <!-- 组件注册及 svg 图标全量引入 -->
-      index.js
-      <!-- 组件实现 -->
-      index.vue
-      <!-- 组件示例 -->
-      demo.vue
-      <!-- 支持查看所有 svg 图标 -->
-      viewer.vue
-      <!-- 存放所有的 svg 图标资源 -->
-      svg
+      index.js     // 组件注册及 svg 图标全量引入
+      index.vue    // 组件实现
+      demo.vue     // 组件示例
+      viewer.vue   // 支持查看所有 svg 图标
+      svg          // 存放所有的 svg 图标资源
         arrow.svg
         ...
 ```
