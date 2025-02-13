@@ -78,3 +78,51 @@ export default {
   }
 }
 ```
+
+## 从页面 A 离开到页面 B 后再回来时需要保持页面 A 的部分状态
+如页面 A 中上次选中的 tab 项，回来后需要保持和上次一致
+
+可以通过 `beforeRouteLeave` 导航守卫来实现，先保存状态至路由再跳转
+
+```js
+export default {
+  beforeRouteLeave(to, from, next) {
+    const toCachedQuery = {
+      activeTab: String(this.activeTab),
+    };
+    const cacheQuery = {
+      ...this.$route.query,
+      ...toCachedQuery,
+    };
+    if (JSON.stringify(this.$route.query) !== JSON.stringify(cacheQuery)) {
+      this.$router.replace({
+        path: this.$route.path,
+        query: cacheQuery,
+      });
+      next(to);
+      return;
+    }
+    next();
+  },
+  data() {
+    return {
+      activeTab: Number(this.$route.query.activeTab || '0')
+    }
+  }
+}
+```
+
+上面代码在路由跳转时会有报错，但不影响实现功能，可以通过下面代码来屏蔽 vue-router 报错
+
+```js
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+
+// 解决报错：NavigationDuplicated: Avoided redundant navigation to current location
+// 该报错不影响实现功能
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err);
+};
+```
