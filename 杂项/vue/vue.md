@@ -50,3 +50,31 @@ defineExpose(expose)
 - 路由组件使用 `keep-alive` 缓存
 - 循环列表中指明 key
 - 避免在模板中直接使用内联函数和对象（会导致每次渲染是都创建新的）
+
+## Vue2 中 provide/inject
+Vue2 中 provide/inject 不是响应式的
+可以通过下面函数的方式来实现响应式
+```js
+// parents
+export default {
+  provide() {
+    return {
+      getSharedData: () => ({
+        activeTab: this.activeTab,
+        clueId: this.clueId,
+      }),
+    };
+  },
+}
+```
+```js
+// child
+export default {
+  inject: ['getSharedData'],
+  computed: {
+    sharedData() {
+      return this.getSharedData();
+    }
+  }
+}
+```
