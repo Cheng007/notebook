@@ -81,7 +81,32 @@ export default {
 
 ## 从页面 A 离开到页面 B 后再回来时需要保持页面 A 的部分状态
 
-请使用 `keepAlive` 实现，下面的方法比较麻烦还有些bug
+请使用 `keepAlive` 实现，下面方法二比较麻烦还有些bug
+
+### 方法一
+`keepAlive`
+利用 `<keep-alive><keep-alive>` 组件，对于需要回到之前滚动位置的可以用下面的方式
+```js
+export default {
+  data() {
+    return {
+      rememberScroll: 0,
+    }
+  },
+  beforeRouteLeave(to, from, next) {
+    const scrollTop = this.$refs.containerRef?.scrollTop;
+    this.rememberScroll = scrollTop;
+    next();
+  },
+  // 缓存组件激活时调用
+  activated() {
+    this.$refs.containerRef.scrollTop = this.rememberScroll;
+  }
+}
+```
+
+
+### 方法二
 
 如页面 A 中上次选中的 tab 项，回来后需要保持和上次一致
 
