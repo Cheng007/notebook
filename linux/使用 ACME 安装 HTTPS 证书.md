@@ -20,7 +20,7 @@ source ~/.bashrc  # 或 source ~/.zshrc（取决于你的 Shell）
 
 2. 生成证书
 
-方式一：HTTP 验证（推荐）
+方式一：HTTP 验证
 
 适用于已经运行 Nginx/Apache 的情况：
 
@@ -48,7 +48,7 @@ Main_Domain    KeyLength  SAN_Domains  CA              Created               Ren
 dongebook.cn   "ec-256"   no           LetsEncrypt.org 2023-11-01T12:00:00Z  2023-01-30T12:00:00Z
 ```
 
-如果 http 方式验证失败，可以尝试使用 DNS 验证，但需要提前配置好 DNS 记录
+方式二：如果 http 方式验证失败，可以尝试使用 DNS 验证，但需要提前配置好 DNS 记录
 ```bash
 acme.sh --issue -d dongebook.cn --dns --yes-I-know-dns-manual-mode-enough-go-ahead-please
 ```
