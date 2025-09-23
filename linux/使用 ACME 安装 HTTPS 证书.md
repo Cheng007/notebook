@@ -54,6 +54,40 @@ acme.sh --issue -d dongebook.cn --dns --yes-I-know-dns-manual-mode-enough-go-ahe
 ```
 然后按照提示手动添加 DNS TXT 记录（通常在域名控制台操作）
 
+### 生成证书信息：
+```
+Your cert is in: /root/.acme.sh/dongebook.cn_ecc/dongebook.cn.cer
+Your cert key is in: /root/.acme.sh/dongebook.cn_ecc/dongebook.cn.key
+The intermediate CA cert is in: /root/.acme.sh/dongebook.cn_ecc/ca.cer
+And the full-chain cert is in: /root/.acme.sh/dongebook.cn_ecc/fullchain.cer
+```
+
+1. dongebook.cn.cer - 域名证书
+域名 dongebook.cn 的实体证书
+只包含你的域名公钥和证书信息
+不包含中间 CA 的证书
+通常用于查看证书详细信息
+
+2. dongebook.cn.key - 私钥文件
+与证书配对的 私钥
+非常重要且需要保密，不要泄露给他人
+在服务器配置中与证书文件一起使用
+
+3. ca.cer - 中间 CA 证书
+这是证书颁发机构（CA）的中间证书
+用于建立证书链的信任关系
+通常需要与域名证书一起使用
+
+4. fullchain.cer - 完整证书链
+这是最常用的文件
+包含：域名证书 + 中间 CA 证书
+在大多数 Web 服务器（Nginx、Apache 等）配置中应该使用这个文件
+
+实际使用建议
+在 Web 服务器配置中：
+证书文件使用：fullchain.cer（完整证书链）
+私钥文件使用：dongebook.cn.key
+
 
 3. 安装证书到 Nginx
 
