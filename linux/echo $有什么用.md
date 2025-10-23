@@ -25,6 +25,7 @@ echo $PWD       # 显示当前工作目录
 ```bash
 echo $$         # 显示当前shell的进程ID(PID)
 echo $?         # 显示上一条命令的退出状态
+echo $-         # 显示当前shell的参数
 echo $0         # 显示当前shell或脚本的名称
 echo $1, $2...  # 显示脚本的位置参数
 ```
@@ -33,6 +34,16 @@ echo $1, $2...  # 显示脚本的位置参数
 ```bash
 # 查看当前用户
 echo $USER
+
+# 查看当前shell的选项标志
+# 常见的选项标志：
+# h：hashall，记住命令的位置
+# i：interactive，交互式shell
+# m：monitor，作业控制
+# B：braceexpand，花括号扩展
+# H：history，命令历史
+# c：执行命令字符串（非交互式）
+echo $-
 
 # 检查上条命令是否成功
 ls /some/directory
